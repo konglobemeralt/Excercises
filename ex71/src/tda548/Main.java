@@ -54,19 +54,19 @@ public class Main extends JFrame {
 
         // example 2
 
-        void tree(double dx, double x, double y, Graphics g) {
-            if (dx < 0.5) { return; }
-            double new_dx = dx / 2;
-            double new_y = y - 20;
-            double new_x1 = x - new_dx;
-            double new_x2 = x + new_dx;
-            int c = (int)(256 * (x / getWidth()));
-            g.setColor(new Color(255,0,c));
-            g.drawLine((int)x,(int)y,(int)new_x1,(int)new_y);
-            g.drawLine((int)x,(int)y,(int)new_x2,(int)new_y);
-            tree(new_dx,new_x1,new_y,g); // this recursive call draws the left side
-            tree(new_dx,new_x2,new_y,g); // this recursive call draws the right side
-        }
+      //  void tree(double dx, double x, double y, Graphics g) {
+      //      if (dx < 0.5) { return; }
+      //      double new_dx = dx / 2;
+      //      double new_y = y - 20;
+      //      double new_x1 = x - new_dx;
+      //      double new_x2 = x + new_dx;
+      //      int c = (int)(256 * (x / getWidth()));
+      //      g.setColor(new Color(255,0,c));
+      //      g.drawLine((int)x,(int)y,(int)new_x1,(int)new_y);
+      //      g.drawLine((int)x,(int)y,(int)new_x2,(int)new_y);
+      //      tree(new_dx,new_x1,new_y,g); // this recursive call draws the left side
+      //      tree(new_dx,new_x2,new_y,g); // this recursive call draws the right side
+      //  }
 
         // example 3
 
@@ -96,6 +96,21 @@ public class Main extends JFrame {
             }
         }
 
+        void tree(double x1, double y1, double angle, int depth, Graphics g)
+        {
+            if (depth == 0)
+            {
+                return;
+            }
+            double newX = x1 +  (Math.cos(Math.toRadians(angle)) * depth * 5);
+            double newY = y1 +  (Math.sin(Math.toRadians(angle)) * depth * 5);
+            g.drawLine((int)x1, (int)y1, (int)newX, (int)newY);
+            tree(newX, newY, angle - 25, depth - 1, g);
+            tree(newX, newY, angle + 25, depth - 1, g);
+
+
+        }
+
 
 
         // paint method
@@ -123,7 +138,6 @@ public class Main extends JFrame {
             double x1 = getWidth()/2;
             double y1 = getHeight()/2;
 
-            boxes(x,y, x1, y1, g);
 
 
             if (9 <= s) { s = 0; }
@@ -131,9 +145,11 @@ public class Main extends JFrame {
             if (s < 3) {
                 g.setColor(Color.YELLOW);
                // spiral(0,0,g);
+                boxes(x,y, x1, y1, g);
             } else if (s < 6) {
                 g.setColor(Color.WHITE);
-              //  tree(getWidth()/3, getWidth()/2, getHeight(), g);
+                int angle = -90;
+                tree(getWidth()/2, getHeight()/2 + 100, angle, 10, g);
             } else {
                 g.setColor(Color.GREEN);
                // triangle(x1,y1,x2,y2,x3,y3,g);
