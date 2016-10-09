@@ -99,6 +99,14 @@ public class Main extends JFrame {
         }
 
 
+        void kochFlake(double x1, double y1, double x2, double y2, double x3, double y3, int depth, Graphics g) {
+            kochLine(x1, y1, x2, y2, depth, g);
+            kochLine(x2, y2, x3, y3, depth, g);
+            kochLine(x3, y3, x1, y1, depth, g);
+
+        }
+
+
         void kochLine(double x1, double y1, double x2, double y2, int depth, Graphics g) {
             if(depth == 0)
             {
@@ -204,7 +212,7 @@ public class Main extends JFrame {
             }
             else
             {
-                kochLine(x1, y1, x2, y2, 3, g);
+                kochFlake(x1,y1,x2,y2,x3,y3,3, g);
 
             }
 
