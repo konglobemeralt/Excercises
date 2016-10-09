@@ -70,10 +70,34 @@ public class Main extends JFrame {
 
         // example 3
 
-        void triangle(double x1, double y1, double x2, double y2, double x3, double y3, Graphics g) {
-            g.drawLine((int)x1,(int)y1,(int)x2,(int)y2);
-            g.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
-            g.drawLine((int)x3,(int)y3,(int)x1,(int)y1);
+        void triangle(double x1, double y1, double x2, double y2, double x3, double y3, int depth, Graphics g) {
+            if(depth == 0)
+            {
+                return;
+            }
+            else
+            {
+                g.drawLine((int)x1,(int)y1,(int)x2,(int)y2);
+                g.drawLine((int)x2,(int)y2,(int)x3,(int)y3);
+                g.drawLine((int)x3,(int)y3,(int)x1,(int)y1);
+
+
+                double newX1 = (x1 + x2)/2;
+                double newY1 = (y1 + y2)/2;
+                double newX2 = (x1 + x3)/2;
+                double newY2 = (y1 + y3)/2;
+                double newX3 = (x2 + x3)/2;
+                double newY3 = (y2 + y3)/2;
+
+
+                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
+                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
+                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
+
+            }
+
+
+
         }
 
 
@@ -122,21 +146,21 @@ public class Main extends JFrame {
             g.setColor(Color.WHITE);
 
            //// compute coordinates for a triangle
-           //double x = getWidth()/2;
-           //double y = getHeight() * 0.72;
-           //double x1 = x - (getHeight() * 0.35);
-           //double x2 = x + (getHeight() * 0.35);
-           //double y1 = y;
-           //double y2 = y;
-           //double x3 = rotateX(x1,y1,x2,y2,-60);
-           //double y3 = rotateY(x1,y1,x2,y2,-60);
+           double x = getWidth()/2;
+           double y = getHeight() * 0.72;
+           double x1 = x - (getHeight() * 0.35);
+           double x2 = x + (getHeight() * 0.35);
+           double y1 = y;
+           double y2 = y;
+           double x3 = rotateX(x1,y1,x2,y2,-60);
+           double y3 = rotateY(x1,y1,x2,y2,-60);
 
             //Cords for box
+            double boxX = getWidth()/4;
+            double boxY = getHeight()/4;
+            double boxX1 = getWidth()/2;
+            double boxY1 = getHeight()/2;
 
-            double x = getWidth()/4;
-            double y = getHeight()/4;
-            double x1 = getWidth()/2;
-            double y1 = getHeight()/2;
 
 
 
@@ -145,14 +169,15 @@ public class Main extends JFrame {
             if (s < 3) {
                 g.setColor(Color.YELLOW);
                // spiral(0,0,g);
-                boxes(x,y, x1, y1, g);
+
+                boxes(boxX,boxY, boxX1, boxY1, g);
             } else if (s < 6) {
                 g.setColor(Color.WHITE);
                 int angle = -90;
                 tree(getWidth()/2, getHeight()/2 + 100, angle, 10, g);
             } else {
                 g.setColor(Color.GREEN);
-               // triangle(x1,y1,x2,y2,x3,y3,g);
+                triangle(x1,y1,x2,y2,x3,y3,10, g);
             }
 
         }
