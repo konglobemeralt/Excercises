@@ -193,25 +193,15 @@ public class Main extends JFrame {
                 s = 0;
             }
 
-            if (s < 3) {
-                g.setColor(Color.YELLOW);
-                // spiral(0,0,g);
-                boxes(boxX, boxY, boxX1, boxY1, g);
-            } else if (s < 6) {
-                g.setColor(Color.WHITE);
-                int angle = -90;
-                tree(getWidth() / 2, getHeight() / 2 + 100, angle, 10, g);
-            } else if (s < 9) {
-                g.setColor(Color.GREEN);
-                triangle(x1, y1, x2, y2, x3, y3, 5, g);
-            } else if (s < 12) {
-                g.setColor(Color.RED);
-                kochFlake(x1, y1, x2, y2, x3, y3, 3, g);
-            } else {
-                g.setColor(Color.CYAN);
-                uppgift5(x1, y1, x2, y2, x3, y3, 3, g);
+
+
+            g.setColor(Color.GREEN);
+                tree(getWidth() / 2, getHeight() / 2 + 100, -90, s, g);
+             //   triangle(x1, y1, x2, y2, x3, y3, s, g);
+             //   kochFlake(x1, y1, x2, y2, x3, y3, s, g);
+             //   uppgift5(x1, y1, x2, y2, x3, y3, s, g);
             }
-        }
+
     }
 
     public Main() {
