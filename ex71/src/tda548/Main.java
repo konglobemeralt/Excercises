@@ -90,9 +90,9 @@ public class Main extends JFrame {
                 double newY3 = (y2 + y3)/2;
 
 
-                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
-                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
-                triangle(newX1, newY1, newX2, newY2, newX3, newY3, depth -1, g);
+                triangle(x1, y1, newX1, newY1, newX2, newY2, depth -1, g);
+                triangle(newX1, newY1, x2, y2, newX3, newY3, depth -1, g);
+                triangle(newX2, newY2, newX3, newY3, x3, y3, depth -1, g);
 
             }
 
@@ -131,8 +131,6 @@ public class Main extends JFrame {
             g.drawLine((int)x1, (int)y1, (int)newX, (int)newY);
             tree(newX, newY, angle - 25, depth - 1, g);
             tree(newX, newY, angle + 25, depth - 1, g);
-
-
         }
 
 
@@ -177,7 +175,7 @@ public class Main extends JFrame {
                 tree(getWidth()/2, getHeight()/2 + 100, angle, 10, g);
             } else {
                 g.setColor(Color.GREEN);
-                triangle(x1,y1,x2,y2,x3,y3,10, g);
+                triangle(x1,y1,x2,y2,x3,y3,5, g);
             }
 
         }
