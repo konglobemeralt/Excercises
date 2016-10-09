@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Main extends JFrame {
 
-    private static final int DELAY = 1000;
+    private static final int DELAY = 100;
 
     private class DemoPanel extends JPanel {
 
@@ -158,6 +158,7 @@ public class Main extends JFrame {
             if (depth == 0) {
                 return;
             }
+            g.setColor(new Color(depth*10, depth*2, depth*10));
             double newX = x1 + (Math.cos(Math.toRadians(angle)) * depth * 5);
             double newY = y1 + (Math.sin(Math.toRadians(angle)) * depth * 5);
             g.drawLine((int) x1, (int) y1, (int) newX, (int) newY);
@@ -189,7 +190,7 @@ public class Main extends JFrame {
             double boxX1 = getWidth() / 2;
             double boxY1 = getHeight() / 2;
 
-            if (15 <= s) {
+            if (25 <= s) {
                 s = 0;
             }
 
