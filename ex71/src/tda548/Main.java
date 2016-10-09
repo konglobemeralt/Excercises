@@ -99,10 +99,17 @@ public class Main extends JFrame {
         }
 
 
-        void kochFlake(double x1, double y1, double x2, double y2, double x3, double y3, int depth, Graphics g) {
+        void uppgift5(double x1, double y1, double x2, double y2, double x3, double y3, int depth, Graphics g) {
             kochLine(x1, y1, x2, y2, depth, g);
             kochLine(x2, y2, x3, y3, depth, g);
             kochLine(x3, y3, x1, y1, depth, g);
+
+        }
+
+        void kochFlake(double x1, double y1, double x2, double y2, double x3, double y3, int depth, Graphics g) {
+            kochLine(x2, y2, x1, y1, depth, g);
+            kochLine(x3, y3, x2, y2, depth, g);
+            kochLine(x1, y1, x3, y3, depth, g);
 
         }
 
@@ -195,7 +202,7 @@ public class Main extends JFrame {
 
 
 
-            if (15 <= s) { s = 0; }
+            //if (15 <= s) { s = 0; }
 
             if (s < 3) {
                 g.setColor(Color.YELLOW);
@@ -210,9 +217,15 @@ public class Main extends JFrame {
                 g.setColor(Color.GREEN);
                 triangle(x1,y1,x2,y2,x3,y3,5, g);
             }
-            else
+            else if (s < 12)
             {
                 kochFlake(x1,y1,x2,y2,x3,y3,3, g);
+
+            }
+            else
+            {
+                uppgift5(x1,y1,x2,y2,x3,y3,3, g);
+
 
             }
 
