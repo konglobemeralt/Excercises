@@ -204,7 +204,7 @@ public class Main extends JFrame {
             }
             else
             {
-                kochLine(x1, y1, x2, y2, 1, g);
+                kochLine(x1, y1, x2, y2, 3, g);
 
             }
 
