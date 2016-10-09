@@ -96,9 +96,34 @@ public class Main extends JFrame {
 
             }
 
+        }
 
+
+        void kochLine(double x1, double y1, double x2, double y2, int depth, Graphics g) {
+            if(depth == 0)
+            {
+                g.drawLine((int)x1,(int)y1,(int)x2,(int)y2);
+                return;
+            }
+            else
+            {
+                double aX = (x1 + x1 + x2)/3;
+                double aY = (y1 + y1 + y2)/3;
+                double bX = ((x1 + x2 + x2)/3);
+                double bY = ((y1 + y2 + y2)/3);
+                double cX = rotateX(aX, aY, bX, bY, -60);
+                double cY = rotateY(aX, aY, bX, bY, -60);
+
+
+                kochLine(x1, y1, aX, aY, depth-1, g);
+                kochLine(aX, aY, cX, cY, depth-1, g);
+                kochLine(cX, cY, bX, bY, depth-1, g);
+                kochLine(bX, bY, x2, y2, depth-1, g);
+            }
 
         }
+
+
 
 
         void boxes(double x, double y, double width, double height, Graphics g) {
@@ -162,7 +187,7 @@ public class Main extends JFrame {
 
 
 
-            if (9 <= s) { s = 0; }
+            if (15 <= s) { s = 0; }
 
             if (s < 3) {
                 g.setColor(Color.YELLOW);
@@ -173,9 +198,14 @@ public class Main extends JFrame {
                 g.setColor(Color.WHITE);
                 int angle = -90;
                 tree(getWidth()/2, getHeight()/2 + 100, angle, 10, g);
-            } else {
+            } else if (s < 9) {
                 g.setColor(Color.GREEN);
                 triangle(x1,y1,x2,y2,x3,y3,5, g);
+            }
+            else
+            {
+                kochLine(x1, y1, x2, y2, 1, g);
+
             }
 
         }
